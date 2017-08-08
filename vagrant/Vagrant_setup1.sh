@@ -10,9 +10,9 @@ sudo locale-gen "fr_FR.UTF-8"
 sudo sh -c "echo 'export LC_ALL=\"fr_FR.UTF-8\"' >> ~/.bashrc"  >> $LOG_FILE
 source ~/.bashrc
 
-# echo 'Upgrade des paquets'
-# echo 'Upgrade des paquets' >> $LOG_FILE
-# sudo apt-get -q update > /dev/null
+echo 'Upgrade des paquets'
+echo 'Upgrade des paquets' >> $LOG_FILE
+sudo apt-get -q update > /dev/null
 
 echo 'Installation de Postgres'
 echo 'Installation de Postgres' >> $LOG_FILE
@@ -24,7 +24,6 @@ sudo chmod 600 ~/.pgpass
 sudo -u postgres psql -c "CREATE USER ubuntu WITH PASSWORD '-ubuntu-';"  >> $LOG_FILE
 sudo -u postgres psql -c "CREATE DATABASE vtile OWNER ubuntu;"  >> $LOG_FILE
 sudo -u postgres psql -c "CREATE extension hstore; CREATE extension postgis;" vtile >> $LOG_FILE
-
 
 # echo 'installation de Imposm3'
 # echo 'installation de Imposm3' >> $LOG_FILE
@@ -44,13 +43,13 @@ sudo apt install apache2 -y
 
 sudo ln -s /srv/web /var/www/html/web
 
+echo 'Creation de la table lines'
+sudo -u postgres psql -c "create table lines (id varchar, name varchar, code varchar, ref_stif varchar, operator varchar, network varchar, mode varchar, colour varchar, shape varchar);" vtile >> $LOG_FILE
+# \copy lines FROM '/srv/osm-transit-extractor_lines2.csv' delimiter ',' CSV
+# delete from lines where id = 'id';
+# alter table lines add column geom geometry(MultiLinestring, 3857);
+# update lines set geom = ST_Transform(ST_GeomFromText(shape, 4326), 3857);
+
+# t_rex genconfig --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile > /srv/trex.toml
 # t_rex serve --config trex.toml &
 # t_rex serve --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile
-
-# create table lines (id varchar, name varchar, code varchar, operator varchar, network varchar, mode varchar, colour varchar, shape varchar);
-# \copy lines FROM /srv/osm-transit-extractor_lines2.csv' delimiter ',' CSV
-# delete from lines where id = 'id';
-# alter table lines add column geom geometry(MultiLinestring, 4326);
-# update lines set geom = ST_GeomFromText(shape, 4326);
-#
-# t_rex genconfig --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile
