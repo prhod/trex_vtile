@@ -49,6 +49,7 @@ sudo -u postgres psql -c "create table lines (id varchar, name varchar, code var
 # delete from lines where id = 'id';
 # alter table lines add column geom geometry(MultiLinestring, 3857);
 # update lines set geom = ST_Transform(ST_GeomFromText(shape, 4326), 3857);
+# CREATE INDEX ON lines UsiNG GIST(geom);
 
 # t_rex genconfig --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile > /srv/trex.toml
 # t_rex serve --config trex.toml &
