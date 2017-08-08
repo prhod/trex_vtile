@@ -5,13 +5,13 @@
         "raster-tiles": {
             "type": "raster",
             "tiles": [
-                "http://a.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+                "http://vip-plan-ihm.mutu.prod.canaltp.fr/osm_bright/{z}/{x}/{y}.png"
             ]
         },
-        "transport": {
+        "lines": {
             "type": "vector",
             "tiles": [
-                "http://localhost:6767/osm_routes/{z}/{x}/{y}.pbf"
+                "http://localhost:6767/lines/{z}/{x}/{y}.pbf"
             ]
         }
     },
@@ -28,6 +28,32 @@
             "source": "raster-tiles",
             "minzoom": 0,
             "maxzoom": 22
+        },
+        {
+            "id": "lines",
+            "source": "lines",
+            "source-layer": "lines",
+            "type": "line",
+            "paint": {
+                "line-color": {
+                    "type": "identity",
+                    "property": "colour"
+                },
+                "line-width": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            12,
+                            2
+                        ],
+                        [
+                            19,
+                            12
+                        ]
+                    ]
+                }
+            }
         }
+
     ]
 }
