@@ -5,10 +5,10 @@ LOG_FILE=/srv/log/setup.log
 mkdir -p /srv/log/
 echo '' > $LOG_FILE
 
-sudo sh -c "echo 'export LC_ALL=\"fr_FR.UTF-8\"' >> ~/.bashrc"  >> $LOG_FILE
-source ~/.bashrc
 sudo locale-gen "en_US.UTF-8"
 sudo locale-gen "fr_FR.UTF-8"
+sudo sh -c "echo 'export LC_ALL=\"fr_FR.UTF-8\"' >> ~/.bashrc"  >> $LOG_FILE
+source ~/.bashrc
 
 echo 'Upgrade des paquets'
 echo 'Upgrade des paquets' >> $LOG_FILE
@@ -18,9 +18,13 @@ echo 'Installation de Postgres'
 echo 'Installation de Postgres' >> $LOG_FILE
 sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2 postgresql-client-common -y  >> $LOG_FILE
 
+
 echo "localhost:5432:*:ubuntu:-ubuntu-" >> ~/.pgpass
 sudo chmod 600 ~/.pgpass
 sudo -u postgres psql -c "CREATE USER ubuntu WITH PASSWORD '-ubuntu-';"  >> $LOG_FILE
+sudo -u postgres psql -c "CREATE DATABASE vtile OWNER ubuntu;"  >> $LOG_FILE
+sudo -u postgres psql -c "CREATE extension hstore; CREATE extension postgis;" vtile >> $LOG_FILE
+
 
 # echo 'installation de Imposm3'
 # echo 'installation de Imposm3' >> $LOG_FILE
@@ -39,3 +43,6 @@ echo 'installation de Apache'
 sudo apt install apache2 -y
 
 sudo ln -s /srv/web /var/www/html/web
+
+# t_rex serve --config trex.toml &
+# t_rex serve --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile
