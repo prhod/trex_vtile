@@ -1,0 +1,770 @@
+{
+    "version": 8,
+    "name": "Basic",
+    "sources": {
+        "transport": {
+            "type": "vector",
+            "tiles": [
+                "http://localhost:8888/utilery/all/{z}/{x}/{y}.pbf"
+            ]
+        }
+    },
+    "sprite": "http://localhost:8888/sprites/basic-v9",
+    "glyphs": "http://localhost:8888/glyphs/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "fond",
+            "type": "background",
+            "paint": {
+                "background-color": "#ffffff"
+            }
+        },
+        {
+            "id": "fond_Bleu",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "waterareas",
+            "filter": [
+                "in",
+                "class",
+                "basin",
+                "reservoir",
+                "riverbank",
+                "water"
+            ],
+            "paint": {
+                "fill-color": "#a7d1c7"
+            },
+            "minzoom": 7
+        },
+        {
+            "id": "fond_Vert",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "landusages",
+            "filter": [
+                "in",
+                "class",
+                "park",
+                "grass"
+            ],
+            "paint": {
+                "fill-color": "#c6e79b"
+            },
+            "minzoom": 7
+        },
+        {
+            "id": "landusage_pedestrian",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "landusages",
+            "filter": [
+                "in",
+                "class",
+                "pedestrian",
+                "footway"
+            ],
+            "paint": {
+                "fill-color": "#f8f1e7"
+            },
+            "minzoom": 14
+        },
+        {
+            "id": "landusage_divers",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "landusages",
+            "filter": [
+                "in",
+                "class",
+                "hospital",
+                "university",
+                "stadium"
+            ],
+            "paint": {
+                "fill-color": "#fbf4ea"
+            },
+            "minzoom": 14
+        },
+        {
+            "id": "buildings_interet",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "buildings",
+            "paint": {
+                "fill-color": "#f7e7d2"
+            },
+            "minzoom": 14
+        },
+        {
+            "id": "transport_areas",
+            "type": "fill",
+            "source": "transport",
+            "source-layer": "transport_areas",
+            "paint": {
+                "fill-color": "#fbf4ea"
+            },
+            "minzoom": 14
+        },
+        {
+            "id": "rail",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "roads_rail",
+            "filter": [
+                "in",
+                "subclass",
+                "rail",
+                "tram"
+            ],
+            "paint": {
+                "line-color": "#999999",
+                "line-width": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            10,
+                            0.1
+                        ],
+                        [
+                            19,
+                            0.4
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 10
+        },
+        {
+            "id": "petites_Routes_blanc",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "unclassified",
+                "residential",
+                "road",
+                "living_street",
+                "pedestrian",
+                "footway"
+            ],
+            "paint": {
+                "line-color": "#f8f0e5",
+                "line-width": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            13,
+                            2
+                        ],
+                        [
+                            19,
+                            7
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 13
+        },
+        {
+            "id": "Moyennes_Routes_blanc",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "secondary",
+                "secondary_link",
+                "tertiary",
+                "tertiary_link"
+            ],
+            "paint": {
+                "line-color": "#f8f0e5",
+                "line-width": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            11,
+                            3.5
+                        ],
+                        [
+                            19,
+                            12
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 11
+        },
+        {
+            "id": "Grandes_Routes_blanc",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "trunk",
+                "trunk_link",
+                "primary",
+                "primary_link"
+            ],
+            "paint": {
+                "line-color": "#f8f0e5",
+                "line-width": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            7,
+                            2.5
+                        ],
+                        [
+                            19,
+                            14
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 7
+        },
+        {
+            "id": "Autoroutes_blanc",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "motorway",
+                "motorway_link"
+            ],
+            "paint": {
+                "line-color": "#ffffff",
+                "line-opacity": 0.7,
+                "line-width": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            7,
+                            3.5
+                        ],
+                        [
+                            19,
+                            18
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 7
+        },
+        {
+            "id": "bus",
+            "type": "line",
+            "source": "transport",
+            "source-layer": "route_members",
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "route",
+                    "bus"
+                ],
+                [
+                    "!=",
+                    "a",
+                    "na"
+                ]
+            ],
+            "paint": {
+                "line-color": {
+                    "property": "relation_colour",
+                    "type": "identity",
+                    "default": "#bbbbbb"
+                },
+                "line-width": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            12,
+                            2
+                        ],
+                        [
+                            19,
+                            12
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 12
+        },
+        {
+            "id": "Adresses",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "housenumbers",
+            "layout": {
+                "text-field": "{class}",
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-size": 12
+            },
+            "minzoom": 18
+        },
+        {
+            "id": "text_Vert",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "landusages",
+            "filter": [
+                "in",
+                "class",
+                "park"
+            ],
+            "paint": {
+                "text-color": "#788c5d"
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "point",
+                "symbol-spacing": 10,
+                "text-padding": 10,
+                "text-allow-overlap": false,
+                "text-font": [
+                    "Open Sans Semibold Italic"
+                ],
+                "text-max-width": 8,
+                "text-optional": true,
+                "text-justify": "center",
+                "text-anchor": "center",
+                "text-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            15,
+                            15
+                        ],
+                        [
+                            19,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "text_landuse_divers_interet",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "landusages",
+            "paint": {
+                "text-color": "#a09b95"
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "point",
+                "symbol-spacing": 10,
+                "text-padding": 30,
+                "text-allow-overlap": false,
+                "text-font": [
+                    "Open Sans Semibold"
+                ],
+                "text-max-width": 10,
+                "text-optional": true,
+                "text-justify": "center",
+                "text-anchor": "center",
+                "text-size": 15
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "text_transport_areas",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "transport_areas",
+            "paint": {
+                "text-color": "#a09b95"
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "point",
+                "symbol-spacing": 10,
+                "text-padding": 30,
+                "text-allow-overlap": false,
+                "text-font": [
+                    "Open Sans Semibold"
+                ],
+                "text-max-width": 10,
+                "text-optional": true,
+                "text-justify": "center",
+                "text-anchor": "center",
+                "text-size": 15
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "text_buildings_interet",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "buildings",
+            "paint": {
+                "text-color": "#a09b95"
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "point",
+                "symbol-spacing": 10,
+                "text-padding": 30,
+                "text-allow-overlap": false,
+                "text-font": [
+                    "Open Sans Semibold"
+                ],
+                "text-max-width": 10,
+                "text-optional": true,
+                "text-justify": "center",
+                "text-anchor": "center",
+                "text-size": 15
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "text_landusage_pedestrian",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "landusages",
+            "filter": [
+                "in",
+                "class",
+                "pedestrian",
+                "footway"
+            ],
+            "paint": {
+                "text-color": "#31033C",
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1.2
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "point",
+                "text-justify": "center",
+                "text-anchor": "center",
+                "text-letter-spacing": 0.1,
+                "symbol-spacing": 40,
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-offset": [
+                    1,
+                    0.6
+                ],
+                "text-padding": 2,
+                "text-max-width": 9,
+                "text-optional": true,
+                "text-size": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            15,
+                            13
+                        ],
+                        [
+                            19,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "bus_nom",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "route_members",
+            "filter": [
+                "in",
+                "route",
+                "bus"
+            ],
+            "paint": {
+                "text-color": {
+                    "property": "relation_colour",
+                    "type": "identity"
+                },
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1.7
+            },
+            "layout": {
+                "text-field": "{member_ref}",
+                "symbol-placement": "line",
+                "text-padding": 13,
+                "icon-rotation-alignment": "map",
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-allow-overlap": false,
+                "text-anchor": "center",
+                "text-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            13
+                        ],
+                        [
+                            19,
+                            17
+                        ]
+                    ]
+                },
+                "symbol-spacing": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            50
+                        ],
+                        [
+                            19,
+                            15
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 13
+        },
+        {
+            "id": "petites_Routes_blanc_name",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "unclassified",
+                "residential",
+                "road",
+                "living_street",
+                "pedestrian",
+                "footway"
+            ],
+            "paint": {
+                "text-color": "#31033C",
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1.2
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "line",
+                "text-justify": "left",
+                "text-letter-spacing": 0.1,
+                "symbol-spacing": 20,
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-offset": [
+                    1,
+                    0.6
+                ],
+                "text-padding": 2,
+                "text-max-angle": 70,
+                "text-max-width": 70,
+                "text-size": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            15,
+                            13
+                        ],
+                        [
+                            19,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 15
+        },
+        {
+            "id": "Moyennes_Routes_blanc_name",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "secondary",
+                "secondary_link",
+                "tertiary",
+                "tertiary_link"
+            ],
+            "paint": {
+                "text-color": "#31033C",
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1.2
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "line",
+                "text-justify": "left",
+                "text-letter-spacing": 0.1,
+                "symbol-spacing": 50,
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-offset": [
+                    1,
+                    0.6
+                ],
+                "text-padding": 2,
+                "text-max-angle": 70,
+                "text-max-width": 70,
+                "text-size": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            12,
+                            13
+                        ],
+                        [
+                            19,
+                            18
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 12
+        },
+        {
+            "id": "Grandes_Routes_blanc_name",
+            "type": "symbol",
+            "source": "transport",
+            "source-layer": "roads",
+            "filter": [
+                "in",
+                "subclass",
+                "trunk",
+                "trunk_link",
+                "primary",
+                "primary_link"
+            ],
+            "paint": {
+                "text-color": "#31033C",
+                "text-halo-color": "#ffffff",
+                "text-halo-width": 1.2
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-placement": "line",
+                "text-justify": "left",
+                "text-letter-spacing": 0.1,
+                "symbol-spacing": 50,
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-offset": [
+                    1,
+                    0.6
+                ],
+                "text-padding": 2,
+                "text-max-angle": 70,
+                "text-max-width": 200,
+                "text-size": {
+                    "base": 2,
+                    "stops": [
+                        [
+                            11,
+                            12
+                        ],
+                        [
+                            19,
+                            19
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 11
+        },
+        {
+            "id": "bus_stop",
+            "type": "symbol",
+            "source": "transport",
+            "filter": [
+                "in",
+                "class",
+                "bus_stop"
+            ],
+            "source-layer": "transport_points",
+            "paint": {
+                "text-color": "#31033C",
+                "text-halo-color": "#fbf8f4",
+                "text-halo-width": 1.2
+            },
+            "layout": {
+                "text-field": "{name}",
+                "symbol-spacing": 5,
+                "icon-image": "circle-11",
+                "icon-padding": 6,
+                "icon-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            14,
+                            0.5
+                        ],
+                        [
+                            16,
+                            1
+                        ]
+                    ]
+                },
+                "text-allow-overlap": false,
+                "text-font": [
+                    "Open Sans Bold"
+                ],
+                "text-max-width": 8,
+                "text-optional": true,
+                "text-justify": "right",
+                "text-anchor": "right",
+                "text-transform": "uppercase",
+                "text-offset": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            [
+                                -0.4,
+                                -1
+                            ]
+                        ],
+                        [
+                            19,
+                            [
+                                -0.7,
+                                -1.7
+                            ]
+                        ]
+                    ]
+                },
+                "text-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            14,
+                            10
+                        ],
+                        [
+                            19,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 14
+        }
+    ]
+}

@@ -37,3 +37,5 @@ curl -O -L https://github.com/pka/t-rex/releases/download/v0.7.8/t-rex-v0.7.8-x8
 
 echo 'installation de Apache'
 sudo apt install apache2 -y
+
+sudo ln -s /srv/web /var/www/html/web
