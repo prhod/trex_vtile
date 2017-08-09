@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8' />
     <title></title>
@@ -7,39 +8,38 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
     <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
+
 <body>
-<div id='map'></div>
-<pre id='features'></pre>
-<script>
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'osm_lines.json',
-    center: [2.3,48.85],
-    hash: true,
-    zoom: 16
-});
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.css' type='text/css' />
 
-var popup = new mapboxgl.Popup({
-    closeButton: false
-});
-
-map.on('load', function() {
-    map.on('mousemove', 'captain_train', function(e) {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
-        // Single out the first found feature.
-        var feature = e.features[0];
-        // Display a popup with the name
-        popup.setLngLat(e.lngLat)
-            .setText(feature.properties.name)
-            .addTo(map);
-    });
-});
-</script>
+    <div id='map'></div>
+    <pre id='features'></pre>
+    <script>
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'osm_lines.json',
+            center: [2.3, 48.85],
+            hash: true,
+            zoom: 16
+        });
+    </script>
+    <script src='auth.js'></script>
+    <script src='index.js'></script>
 
 </body>
+
 </html>

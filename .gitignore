@@ -3,3 +3,4 @@ data
 log
 imposm3
 *.log
+web/auth.js
