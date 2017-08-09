@@ -45,13 +45,9 @@
                     "default": 5,
                     "type": "categorical",
                     "stops": [
-                        ["bus", 2],
-                        ["coach", 2],
-                        ["subway", 5],
                         ["train", 5],
                         ["rail", 5],
-                        ["railway", 5],
-                        ["tram", 3]
+                        ["railway", 5]
                     ]
                 }
             }
@@ -61,7 +57,7 @@
             "source": "lines",
             "source-layer": "lines",
             "type": "line",
-            "minzoom": 12,
+            "minzoom": 10,
             "maxzoom": 22,
             "filter": ["!in", "mode", "bicycle", "train", "railway", "rail"],
             "paint": {
@@ -77,6 +73,12 @@
                         ["bus", 2],
                         ["coach", 2],
                         ["subway", 5],
+                        ["trolleybus", 3],
+                        ["ferry", 5],
+                        ["light_rail", 4],
+                        ["funicular", 4],
+                        ["aerialway", 4],
+                        ["share_taxi", 2],
                         ["tram", 3]
                     ]
                 }
