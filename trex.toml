@@ -27,8 +27,8 @@ query_limit = 1000
 #[[tileset.layer.query]]
 #sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour","shape" FROM lines WHERE geom && !bbox!"""
 
-#[cache.file]
-#base = "/tmp/mvtcache"
+[cache.file]
+base = "/srv/mvtcache"
 #baseurl = "http://example.com/tiles"
 
 [webserver]
