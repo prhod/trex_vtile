@@ -4,8 +4,8 @@
     <meta charset='utf-8' />
     <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -23,7 +23,22 @@ var map = new mapboxgl.Map({
     zoom: 16
 });
 
+var popup = new mapboxgl.Popup({
+    closeButton: false
+});
 
+map.on('load', function() {
+    map.on('mousemove', 'captain_train', function(e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+        // Single out the first found feature.
+        var feature = e.features[0];
+        // Display a popup with the name
+        popup.setLngLat(e.lngLat)
+            .setText(feature.properties.name)
+            .addTo(map);
+    });
+});
 </script>
 
 </body>

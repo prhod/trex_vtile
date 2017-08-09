@@ -30,30 +30,57 @@
             "maxzoom": 22
         },
         {
-            "id": "lines",
+            "id": "captain_train",
             "source": "lines",
             "source-layer": "lines",
             "type": "line",
+            "filter": ["in", "mode", "train", "railway", "rail"],
             "paint": {
                 "line-color": {
                     "type": "identity",
                     "property": "colour"
                 },
                 "line-width": {
-                    "base": 1,
+                    "property": "mode",
+                    "default": 5,
+                    "type": "categorical",
                     "stops": [
-                        [
-                            12,
-                            2
-                        ],
-                        [
-                            19,
-                            12
-                        ]
+                        ["bus", 2],
+                        ["coach", 2],
+                        ["subway", 5],
+                        ["train", 5],
+                        ["rail", 5],
+                        ["railway", 5],
+                        ["tram", 3]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "other_lines",
+            "source": "lines",
+            "source-layer": "lines",
+            "type": "line",
+            "minzoom": 12,
+            "maxzoom": 22,
+            "filter": ["!in", "mode", "bicycle", "train", "railway", "rail"],
+            "paint": {
+                "line-color": {
+                    "type": "identity",
+                    "property": "colour"
+                },
+                "line-width": {
+                    "property": "mode",
+                    "default": 20,
+                    "type": "categorical",
+                    "stops": [
+                        ["bus", 2],
+                        ["coach", 2],
+                        ["subway", 5],
+                        ["tram", 3]
                     ]
                 }
             }
         }
-
     ]
 }
