@@ -52,5 +52,5 @@ sudo -u postgres psql -c "create table lines (id varchar, name varchar, code var
 # CREATE INDEX ON lines UsiNG GIST(geom);
 
 # t_rex genconfig --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile > /srv/trex.toml
-# t_rex serve --config trex.toml &
+# t_rex serve --config trex.toml --simplify true &
 # t_rex serve --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile
