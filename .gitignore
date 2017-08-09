@@ -1,5 +1,6 @@
 .vagrant
 data
+mvtcache
 log
 imposm3
 *.log
