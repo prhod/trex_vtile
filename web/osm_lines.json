@@ -15,14 +15,13 @@
             ]
         },
         "mapbox": {
-            "url": "mapbox://mapbox.mapbox-streets-v7",
+            "url": "mapbox://mapbox.mapbox-streets-v7?optimize=true",
             "type": "vector"
         }
     },
     "sprite": "mapbox://sprites/mapbox/basic-v9",
     "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
-    "layers": [
-        {
+    "layers": [{
             "id": "background",
             "type": "background",
             "paint": {
@@ -67,8 +66,7 @@
             "source": "mapbox",
             "source-layer": "waterway",
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
@@ -125,15 +123,13 @@
                 "line-join": "miter"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway_link",
@@ -184,15 +180,13 @@
                 "line-join": "miter"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway",
@@ -240,15 +234,13 @@
                 "line-join": "round"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway_link",
@@ -296,15 +288,13 @@
                 "line-join": "round"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway",
@@ -349,15 +339,13 @@
                 "line-join": "miter"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway_link",
@@ -417,15 +405,13 @@
                 "line-join": "miter"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway",
@@ -482,15 +468,13 @@
                 "line-join": "round"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway_link",
@@ -537,15 +521,13 @@
                 "line-join": "round"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "in",
                         "class",
                         "motorway",
@@ -589,15 +571,13 @@
                 "line-join": "round"
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "<=",
                         "admin_level",
                         2
@@ -650,15 +630,13 @@
                 "icon-size": 1
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "Point"
                 ],
                 [
-                    "all",
-                    [
+                    "all", [
                         "==",
                         "scalerank",
                         1
@@ -707,8 +685,7 @@
                 }
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "LineString"
@@ -757,8 +734,7 @@
                 }
             },
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "Point"
@@ -809,8 +785,7 @@
             },
             "maxzoom": 16,
             "filter": [
-                "all",
-                [
+                "all", [
                     "==",
                     "$type",
                     "Point"
@@ -870,7 +845,7 @@
                 "text-halo-blur": 1
             },
             "source-layer": "country_label"
-},
+        },
         {
             "id": "captain_train",
             "source": "lines",
@@ -893,55 +868,6 @@
                     ]
                 }
             }
-        },
-        {
-            "id": "bus_nom",
-            "type": "symbol",
-            "source": "lines",
-            "source-layer": "lines",
-            "filter": [
-                "in",
-                "mode",
-                "bus"
-            ],
-            "layout": {
-                "text-field": "{ref}",
-                "symbol-placement": "line",
-                "text-padding": 13,
-                "icon-rotation-alignment": "map",
-                "text-font": [
-                    "Open Sans Regular"
-                ],
-                "text-allow-overlap": false,
-                "text-anchor": "center",
-                "text-size": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            13,
-                            13
-                        ],
-                        [
-                            19,
-                            17
-                        ]
-                    ]
-                },
-                "symbol-spacing": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            13,
-                            50
-                        ],
-                        [
-                            19,
-                            15
-                        ]
-                    ]
-                }
-            },
-            "minzoom": 13
         },
         {
             "id": "other_lines",
@@ -974,6 +900,64 @@
                     ]
                 }
             }
+        },
+        {
+            "id": "bus_nom",
+            "type": "symbol",
+            "source": "lines",
+            "source-layer": "lines",
+            "filter": [
+                "in",
+                "mode",
+                "bus"
+            ],
+           "paint": {
+                "text-color": "#ffffff",
+                "text-halo-color": {
+                    "property": "colour",
+                    "type": "identity"
+                },
+                "text-halo-width": 15.7,
+                "text-halo-blur": 6
+            },
+            "layout": {
+                "text-field": "{code}",
+                "symbol-placement": "line",
+                "text-padding": 11,
+                "icon-rotation-alignment": "map",
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-allow-overlap": false,
+                "text-anchor": "center",
+                "text-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            12
+                        ],
+                        [
+                            19,
+                            14
+                        ]
+                    ]
+                },
+                "symbol-spacing": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            190
+                        ],
+                        [
+                            19,
+                            215
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 13
         }
     ]
 }
