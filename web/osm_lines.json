@@ -895,6 +895,55 @@
             }
         },
         {
+            "id": "bus_nom",
+            "type": "symbol",
+            "source": "lines",
+            "source-layer": "lines",
+            "filter": [
+                "in",
+                "mode",
+                "bus"
+            ],
+            "layout": {
+                "text-field": "{ref}",
+                "symbol-placement": "line",
+                "text-padding": 13,
+                "icon-rotation-alignment": "map",
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-allow-overlap": false,
+                "text-anchor": "center",
+                "text-size": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            13
+                        ],
+                        [
+                            19,
+                            17
+                        ]
+                    ]
+                },
+                "symbol-spacing": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            50
+                        ],
+                        [
+                            19,
+                            15
+                        ]
+                    ]
+                }
+            },
+            "minzoom": 13
+        },
+        {
             "id": "other_lines",
             "source": "lines",
             "source-layer": "lines",
