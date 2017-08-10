@@ -7,6 +7,17 @@ var popup = new mapboxgl.Popup({
 });
 
 map.on('load', function() {
+
+    $.getJSON("osm_lines.json", function(osm_lines) {
+        var source_name = Object.keys(osm_lines["sources"]);
+        var source_detail = osm_lines["sources"][source_name];
+        map.addSource(source_name, source_detail);
+        for (i in osm_lines["layers"]){
+            map.addLayer(osm_lines["layers"][i]);
+        }
+    });
+
+
     map.on('mousemove', 'captain_train', function(e) {
         // Change the cursor style as a UI indicator.
         map.getCanvas().style.cursor = 'pointer';
