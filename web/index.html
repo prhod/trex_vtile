@@ -28,15 +28,12 @@
 
     <div id='map'></div>
     <pre id='features'></pre>
-    <script
-			  src="http://code.jquery.com/jquery-3.2.1.min.js"
-			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			  crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src='auth.js'></script>
     <script>
         var map = new mapboxgl.Map({
             container: 'map', // container id
-            style: 'mapbox://styles/mapbox/dark-v9',
+            style: 'mapbox://styles/mapbox/light-v9',
             center: [2.3, 48.85],
             hash: true,
             zoom: 16
