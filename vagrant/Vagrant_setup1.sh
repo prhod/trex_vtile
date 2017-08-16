@@ -45,12 +45,23 @@ sudo ln -s /srv/web /var/www/html/web
 
 echo 'Creation de la table lines'
 sudo -u postgres psql -c "create table lines (id varchar, name varchar, code varchar, ref_stif varchar, operator varchar, network varchar, mode varchar, colour varchar, shape varchar);" vtile >> $LOG_FILE
+
+#
 # \copy lines FROM '/srv/osm-transit-extractor_lines2.csv' delimiter ',' CSV
 # delete from lines where id = 'id';
 # alter table lines add column geom geometry(MultiLinestring, 3857);
 # update lines set geom = ST_Transform(ST_GeomFromText(shape, 4326), 3857);
 # CREATE INDEX ON lines UsiNG GIST(geom);
-
+#
+# select "id","name","code","ref_stif","operator","network","mode","colour", ST_SimplifyPreserveTopology(geom, 10) as geom  into lines10 from lines;
+# CREATE INDEX ON lines10 UsiNG GIST(geom);
+#
+# select "id","name","code","ref_stif","operator","network","mode","colour", ST_SimplifyPreserveTopology(geom, 50) as geom  into lines50 from lines;
+# CREATE INDEX ON lines50 UsiNG GIST(geom);
+#
+# select "id","name","code","ref_stif","operator","network","mode","colour", ST_SimplifyPreserveTopology(geom, 100) as geom  into lines100 from lines;
+# CREATE INDEX ON lines100 UsiNG GIST(geom);
+#
 # t_rex genconfig --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile > /srv/trex.toml
-# t_rex serve --config trex.toml --simplify true &
+# t_rex serve --config trex.toml --simplify true 
 # t_rex serve --dbconn postgresql://ubuntu:-ubuntu-@localhost/vtile

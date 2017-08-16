@@ -24,8 +24,16 @@ srid = 3857
 buffer_size = 0
 simplify = true
 query_limit = 1000
-#[[tileset.layer.query]]
-#sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour","shape" FROM lines WHERE geom && !bbox!"""
+[[tileset.layer.query]]
+sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour" FROM lines10 WHERE geom && !bbox! AND mode not in ('bus')"""
+[[tileset.layer.query]]
+minzoom = 14
+maxzoom = 16
+sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour" FROM lines100 WHERE geom && !bbox!"""
+[[tileset.layer.query]]
+minzoom = 16
+maxzoom = 22
+sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour" FROM lines10 WHERE geom && !bbox!"""
 
 [cache.file]
 base = "/srv/mvtcache"
