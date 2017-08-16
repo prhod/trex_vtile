@@ -47,23 +47,23 @@ map.on('load', function() {
 
 });
 
-setTimeout(function(){
-        console.log("now !");
-        
-        var lines_list = document.getElementById('map-overlay');
-        lines_list.innerHTML = "Liste des lignes <br>";
-        
-        all_other_lines = map.queryRenderedFeatures({ layers: ['other_lines'] });
-        all_other_lines_names = all_other_lines.map(function(x){return x.properties.name;})
-        var dedup = all_other_lines_names.filter(function(item, pos, self) {
-                return self.indexOf(item) == pos;
-                });
-        
+map.on('render', function(e) {
+        if (map.loaded()) {        
+                var lines_list = document.getElementById('map-overlay');
+                lines_list.innerHTML = "Liste des lignes <br>";
+                
+                all_other_lines = map.queryRenderedFeatures({ layers: ['other_lines'] });
+                all_other_lines_names = all_other_lines.map(function(x){return x.properties.name;})
+                var dedup = all_other_lines_names.filter(function(item, pos, self) {
+                        return self.indexOf(item) == pos;
+                        });
+                
 
-        for (i in dedup.sort()) {
-            lines_list.innerHTML += dedup[i] + "<br>";            
+                for (i in dedup.sort()) {
+                    lines_list.innerHTML += dedup[i] + "<br>";            
+                }
         }
-}, 8000)
+});
 
 
 
