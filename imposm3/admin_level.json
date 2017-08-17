@@ -1,0 +1,63 @@
+{
+    "tables": {
+        "admin_poly": {
+            "fields": [
+                {
+                    "type": "id",
+                    "name": "osm_id"
+                },
+                {
+                    "type": "geometry",
+                    "name": "geometry"
+                },
+                {
+                    "type": "string",
+                    "name": "name",
+                    "key": "name"
+                },
+                {
+                    "type": "string",
+                    "name": "admin_level",
+                    "key": "admin_level"
+                }
+            ],
+            "type": "polygon",
+            "mapping": {
+                "boundary": ["administrative"],
+                "type": ["boundary"],
+            }
+        },
+        "admin_center": {
+            "fields": [
+                {
+                    "type": "id",
+                    "name": "osm_id"
+                },
+                {
+                    "type": "geometry",
+                    "name": "geometry"
+                },
+                {
+                    "type": "string",
+                    "name": "name",
+                    "key": "name"
+                },
+                {
+                    "type": "string",
+                    "name": "capital",
+                    "key": "capital"
+                },
+                {
+                    "type": "string",
+                    "name": "place",
+                    "key": "place"
+                }
+            ],
+            "type": "point",
+            "mapping": {
+                "capital": [__any__],
+                "place": [city],
+            }
+        }
+    }
+}

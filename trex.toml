@@ -35,8 +35,23 @@ minzoom = 16
 maxzoom = 22
 sql = """SELECT geom,"id","name","code","ref_stif","operator","network","mode","colour" FROM lines10 WHERE geom && !bbox!"""
 
-[cache.file]
-base = "/srv/mvtcache"
+[[tileset]]
+name = "admin_level_poly"
+[[tileset.layer]]
+name = "admin_level_poly"
+table_name = "import.osm_admin_poly"
+geometry_field = "geometry"
+geometry_type = "POLYGON"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+
+
+
+#[cache.file]
+#base = "/srv/mvtcache"
 #baseurl = "http://example.com/tiles"
 
 [webserver]

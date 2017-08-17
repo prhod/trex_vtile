@@ -1,0 +1,4 @@
+{
+    "connection": "postgis://ubuntu:-ubuntu-@localhost/vtile",
+    "mapping": "/srv/imposm3/admin_level.json"
+}
