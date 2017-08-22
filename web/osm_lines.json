@@ -9,11 +9,56 @@
             ]
         }
     },
-    "layers": [
+    "layers": [{
+            "id": "captain_train_gris",
+            "source": "lines",
+            "source-layer": "lines",
+            "minzoom": 10,
+            "maxzoom": 12,
+            "type": "line",
+            "filter": ["in", "mode", "train", "railway", "rail"],
+            "paint": {
+                "line-color": "#53535E",
+                "line-width": {
+                    "property": "mode",
+                    "default": 5,
+                    "type": "categorical",
+                    "stops": [
+                        ["train", 5],
+                        ["rail", 5],
+                        ["railway", 5]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "captain_train_gris_mais_plus_ptit",
+            "source": "lines",
+            "source-layer": "lines",
+            "minzoom": 12,
+            "maxzoom": 13,
+            "type": "line",
+            "filter": ["in", "mode", "train", "railway", "rail"],
+            "paint": {
+                "line-color": "#53535E",
+                "line-width": {
+                    "property": "mode",
+                    "default": 5,
+                    "type": "categorical",
+                    "stops": [
+                        ["train", 3],
+                        ["rail", 3],
+                        ["railway", 3]
+                    ]
+                }
+            }
+        },
         {
             "id": "captain_train",
             "source": "lines",
             "source-layer": "lines",
+            "minzoom": 5,
+            "maxzoom": 10,
             "type": "line",
             "filter": ["in", "mode", "train", "railway", "rail"],
             "paint": {
@@ -34,13 +79,63 @@
             }
         },
         {
-            "id": "other_lines",
+            "id": "modes_lourds",
             "source": "lines",
             "source-layer": "lines",
             "type": "line",
             "minzoom": 10,
             "maxzoom": 22,
-            "filter": ["!in", "mode", "bicycle", "train", "railway", "rail"],
+            "filter": ["in", "mode", "subway", "ferry", "light_rail", "tram", "ferry", "aerialway", "funicular"],
+            "paint": {
+                "line-color": {
+                    "type": "identity",
+                    "property": "colour"
+                },
+                "line-width": {
+                    "property": "mode",
+                    "default": 20,
+                    "type": "categorical",
+                    "stops": [
+                        ["subway", 5],
+                        ["ferry", 2],
+                        ["light_rail", 4],
+                        ["funicular", 4],
+                        ["aerialway", 4],
+                        ["tram", 5]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "other_lines_gris",
+            "source": "lines",
+            "source-layer": "lines",
+            "type": "line",
+            "minzoom": 10,
+            "maxzoom": 13,
+            "filter": ["in", "mode", "bus", "coach", "trolleybus"],
+            "paint": {
+                "line-color": "#B0A7AF",
+                "line-width": {
+                    "property": "mode",
+                    "default": 20,
+                    "type": "categorical",
+                    "stops": [
+                        ["bus", 1],
+                        ["trolleybus", 3],
+                        ["coach", 1]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "other_lines",
+            "source": "lines",
+            "source-layer": "lines",
+            "type": "line",
+            "minzoom": 13,
+            "maxzoom": 22,
+            "filter": ["!in", "mode", "bicycle", "train", "railway", "rail", "subway", "ferry", "light_rail", "tram", "ferry", "aerialway", "funicular"],
             "paint": {
                 "line-color": {
                     "type": "identity",
@@ -52,15 +147,8 @@
                     "type": "categorical",
                     "stops": [
                         ["bus", 2],
-                        ["coach", 2],
-                        ["subway", 5],
                         ["trolleybus", 3],
-                        ["ferry", 5],
-                        ["light_rail", 4],
-                        ["funicular", 4],
-                        ["aerialway", 4],
-                        ["share_taxi", 2],
-                        ["tram", 3]
+                        ["coach", 2]
                     ]
                 }
             }
@@ -75,7 +163,7 @@
                 "mode",
                 "bus"
             ],
-           "paint": {
+            "paint": {
                 "text-color": "#ffffff",
                 "text-halo-color": {
                     "property": "colour",
