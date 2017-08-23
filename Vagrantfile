@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :privileged => false, :inline => "bash -i /srv/vagrant/Vagrant_setup1.sh"
   config.vm.network "forwarded_port", guest: 80, host: 8888
   config.vm.network "forwarded_port", guest: 6767, host: 6767
+  config.vm.network "forwarded_port", guest: 5432, host: 54320
 
   config.trigger.before :destroy do
    info "Cleaning up local files..."

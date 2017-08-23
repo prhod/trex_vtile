@@ -17,7 +17,10 @@ sudo apt-get -q update > /dev/null
 echo 'Installation de Postgres'
 echo 'Installation de Postgres' >> $LOG_FILE
 sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2 postgresql-client-common -y  >> $LOG_FILE
-
+sudo sed -i -e "s/local   all             all                                     peer/local   all             all                                     md5/g" /etc/postgresql/9.5/main/pg_hba.conf
+sudo sed -i -e "s/host    all             all             127.0.0.1\/32            md5/host    all             all                 0.0.0.0\/0                   md5/g" /etc/postgresql/9.5/main/pg_hba.conf
+sudo sed -i -e "s/.*listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/9.5/main/postgresql.conf
+sudo service postgresql reload
 
 echo "localhost:5432:*:ubuntu:-ubuntu-" >> ~/.pgpass
 sudo chmod 600 ~/.pgpass
