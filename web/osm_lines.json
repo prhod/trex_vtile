@@ -7,6 +7,12 @@
             "tiles": [
                 "http://localhost:6767/lines/{z}/{x}/{y}.pbf"
             ]
+        },
+        "poc_nantes": {
+            "type": "vector",
+            "tiles": [
+                "http://localhost:6767/poc_nantes/{z}/{x}/{y}.pbf"
+            ]
         }
     },
     "layers": [{
@@ -79,13 +85,13 @@
             }
         },
         {
-            "id": "modes_lourds",
+            "id": "modes_lourds_sauf_tram",
             "source": "lines",
             "source-layer": "lines",
             "type": "line",
             "minzoom": 10,
             "maxzoom": 22,
-            "filter": ["in", "mode", "subway", "ferry", "light_rail", "tram", "ferry", "aerialway", "funicular"],
+            "filter": ["in", "mode", "subway", "ferry", "light_rail", "ferry", "aerialway", "funicular"],
             "paint": {
                 "line-color": {
                     "type": "identity",
@@ -104,6 +110,65 @@
                         ["tram", 5]
                     ]
                 }
+            }
+        },
+        {
+            "id": "poc_nantes_styles",
+            "source": "poc_nantes",
+            "source-layer": "poc_nantes",
+            "type": "line",
+            "minzoom": 10,
+            "maxzoom": 22,
+            "paint": {
+                "line-color": {
+                    "type": "identity",
+                    "property": "colour"
+                },
+                "line-offset": {
+                    "base": 1,
+                    "type": "categorical",
+                    "property": "lineref",
+                    "stops": [
+                        [{
+                                "value": "1",
+                                "zoom": 0
+                            },
+                            0
+                        ],
+                        [{
+                                "value": "2",
+                                "zoom": 0
+                            },
+                            0
+                        ],
+                        [{
+                                "value": "3",
+                                "zoom": 0
+                            },
+                            0
+                        ],
+                        [{
+                                "value": "4",
+                                "zoom": 0
+                            },
+                            0
+                        ],
+                        [{
+                                "value": "2",
+                                "zoom": 14
+                            },
+                            5
+                        ],
+                        [{
+                                "value": "4",
+                                "zoom": 14
+                            },
+                            10
+                        ]
+                    ],
+                    "default": 0
+                },
+                "line-width": 5
             }
         },
         {
