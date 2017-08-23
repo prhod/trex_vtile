@@ -61,7 +61,7 @@ buffer_size = 0
 simplify = true
 query_limit = 1000
 [[tileset.layer.query]]
-sql = """select d.*, g.count
+sql = """select d.*, g.count, array_position(codes, d.code) as offset_order
 from tan_group g left join tan_detail d
 on g.geom = d.geom
 WHERE g.geom && !bbox!"""

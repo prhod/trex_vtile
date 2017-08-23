@@ -12,8 +12,17 @@ map.on('load', function() {
 
     $.getJSON("osm_lines.json", function(osm_lines) {
         var source_name = Object.keys(osm_lines["sources"]);
-        var source_detail = osm_lines["sources"][source_name];
-        map.addSource(source_name, source_detail);
+        console.log(source_name);
+        if (typeof(source_name) == "string") {
+            var source_detail = osm_lines["sources"][source_name];
+            map.addSource(source_name, source_detail);
+        } else {
+            for (i in source_name) {
+                name = source_name[i];
+                var source_detail = osm_lines["sources"][name];
+                map.addSource(name, source_detail);
+            }
+        }
         for (i in osm_lines["layers"]) {
             map.addLayer(osm_lines["layers"][i]);
         }
