@@ -20,11 +20,13 @@ Tracés :
   * en plus, ça améliore perf de simplifier
 * Réduire les croisements des lignes (en changeant le tri dans la parallélisation)
 * Arrondir les angles (parce que les angles droits, c'est trop moche)
+* Afficher le numéro de la ligne à un des terminus afin de permettre une identification facile
 
 Arrêts :
 * Contextualisation en fonction du niveau de zoom : afficher uniquement les arrêts principaux (gares, etc) quand on est très dézoomé, puis en ajouter petit à petit
 * Afficher les correspondances entre les lignes
 * À très fort niveau de zoom, ne plus afficher les tracés des lignes, mais juste les arrêts (emplacement d'attente voyageur) avec la liste des parcours desservis
+
 
 
 # admin_level.html
