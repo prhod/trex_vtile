@@ -106,17 +106,17 @@
                         ["ferry", 2],
                         ["light_rail", 4],
                         ["funicular", 4],
-                        ["aerialway", 4],
-                        ["tram", 5]
+                        ["aerialway", 4]
                     ]
                 }
             }
         },
         {
-            "id": "poc_nantes_styles",
+            "id": "poc_nantes_style",
             "source": "poc_nantes",
             "source-layer": "poc_nantes",
             "type": "line",
+            "filter": ["!=", "count", 1],
             "minzoom": 10,
             "maxzoom": 22,
             "paint": {
@@ -125,45 +125,33 @@
                     "property": "colour"
                 },
                 "line-offset": {
-                    "base": 1,
+                    "base": 0,
                     "type": "categorical",
                     "property": "offset_order",
                     "stops": [
                         [{
-                                "value": "1",
-                                "zoom": 0
+                                "value": 1,
+                                "zoom": 10
                             },
                             0
                         ],
                         [{
-                                "value": "2",
-                                "zoom": 0
+                                "value": 2,
+                                "zoom": 10
+                            },
+                            2
+                        ],
+                        [{
+                                "value": 1,
+                                "zoom": 12
                             },
                             0
                         ],
                         [{
-                                "value": "3",
-                                "zoom": 0
-                            },
-                            0
-                        ],
-                        [{
-                                "value": "4",
-                                "zoom": 0
-                            },
-                            0
-                        ],
-                        [{
-                                "value": "1",
-                                "zoom": 14
+                                "value": 2,
+                                "zoom": 12
                             },
                             5
-                        ],
-                        [{
-                                "value": "2",
-                                "zoom": 14
-                            },
-                            10
                         ]
                     ],
                     "default": 0
@@ -171,6 +159,23 @@
                 "line-width": 5
             }
         },
+        {
+            "id": "poc_nantes_style_non_parallele",
+            "source": "poc_nantes",
+            "source-layer": "poc_nantes",
+            "type": "line",
+            "filter": ["==", "count", 1],
+            "minzoom": 10,
+            "maxzoom": 22,
+            "paint": {
+                "line-color": {
+                    "type": "identity",
+                    "property": "colour"
+                },
+                "line-width": 5
+            }
+        },
+
         {
             "id": "other_lines_gris",
             "source": "lines",
