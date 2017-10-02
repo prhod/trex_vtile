@@ -48,6 +48,7 @@ sudo ln -s /srv/web /var/www/html/web
 
 echo 'Creation de la table lines'
 sudo -u postgres psql -c "create table lines (id varchar, name varchar, code varchar, ref_stif varchar, operator varchar, network varchar, mode varchar, colour varchar, shape varchar);" vtile >> $LOG_FILE
+sudo -u postgres psql -c "alter table lines owner to ubuntu;" vtile
 
 #
 # \copy lines FROM '/srv/osm-transit-extractor_lines2.csv' delimiter ',' CSV
