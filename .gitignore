@@ -3,4 +3,5 @@ data
 mvtcache
 log
 *.log
-web/auth.js
+auth.js
+*.tmp

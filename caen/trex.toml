@@ -1,0 +1,95 @@
+# t-rex configuration
+
+[service.mvt]
+viewer = true
+
+[datasource]
+type = "postgis"
+url = "postgresql://ubuntu:-ubuntu-@localhost/caen"
+
+[grid]
+# Predefined grids: web_mercator, wgs84
+predefined = "web_mercator"
+
+[[tileset]]
+name = "transport_points"
+extent = [-5.05458, 41.90090, 9.45420, 51.08534]
+[[tileset.layer]]
+name = "transport_points"
+table_name = "osm_transport_points"
+geometry_field = "geom"
+geometry_type = "POINT"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+
+[[tileset]]
+name = "stop_points"
+extent = [-5.05458, 41.90090, 9.45420, 51.08534]
+[[tileset.layer]]
+name = "stop_points"
+table_name = "stop_points"
+geometry_field = "geom"
+geometry_type = "POINT"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+[[tileset.layer.query]]
+sql = """
+    select sp.osm_id , sp.name, sp.geom, array_agg(rm.ref || ':' || rm.colour)
+    from stop_point sp
+    inner join osm_route_members rm on sp.osm_id = rm.member_osm_id
+    where geom && !bbox!
+    group by sp.osm_id , sp.name, sp.geom
+  """
+
+
+[[tileset]]
+name = "route_members"
+extent = [-5.05458, 41.90090, 9.45420, 51.08534]
+[[tileset.layer]]
+name = "route_members"
+table_name = "osm_route_members"
+geometry_field = "geom"
+geometry_type = "LINESTRING"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+
+[[tileset]]
+name = "routes"
+extent = [-5.05458, 41.90090, 9.45420, 51.08534]
+[[tileset.layer]]
+name = "routes"
+table_name = "osm_routes"
+geometry_field = "geometry"
+geometry_type = "LINESTRING"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+[[tileset.layer.query]]
+sql = """
+  SELECT id, osm_id, member, index, role, type, relname, name, ref, geometry
+  FROM osm_route_members
+  WHERE geometry && !bbox!
+  AND type = 1
+  """
+
+#[cache.file]
+#base = "/srv/mvtcache"
+#baseurl = "http://example.com/tiles"
+
+[webserver]
+# Bind address. Use 0.0.0.0 to listen on all adresses.
+bind = "0.0.0.0"
+port = 6767
+threads = 4
+#cache_control_max_age = 43200

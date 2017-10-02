@@ -21,6 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8888
   config.vm.network "forwarded_port", guest: 6767, host: 6767
   config.vm.network "forwarded_port", guest: 5432, host: 54320
+  config.vm.network "forwarded_port", guest: 3579, host: 3579
 
   config.trigger.before :destroy do
    info "Cleaning up local files..."
