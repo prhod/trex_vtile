@@ -3,23 +3,53 @@
     "name": "Basic",
     "sources": {
         "stop_points": {
-            "type": "vector",
-            "url": "http://0.0.0.0:6767/stop_points.json"
+            "type": "geojson",
+            "data": "./stop_points.geojson"
+        },
+        "stop_point_lines": {
+            "type": "geojson",
+            "data": "./stop_point_lines_empty.geojson"
         }
     },
     "layers": [
         {
             "id": "stop_points",
             "source": "stop_points",
-            "source-layer": "stop_points",
             "type": "symbol",
             "layout": {
                 "icon-image": "bus_station",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-font": [
+                    "Open Sans Semibold",
+                    "Arial Unicode MS Bold"
+                ],
                 "text-size": 12,
                 "text-anchor": "top",
-                "text-offset": [0, 0.6],
+                "text-offset": [
+                    0,
+                    0.6
+                ],
                 "text-field": "{name}"
+            }
+        },
+        {
+            "id": "stop_point_lines",
+            "source": "stop_point_lines",
+            "type": "symbol",
+            "layout": {
+                "text-font": [
+                    "Open Sans Semibold",
+                    "Arial Unicode MS Bold"
+                ],
+                "text-size": 16,
+                "text-padding": 11,
+                "text-anchor": "left",
+                "text-offset": {"type": "identity", "property": "offset"},
+                "text-field": "{ref}"
+            },
+            "paint": {
+                "text-halo-width": 12,
+                "text-halo-color": { "type": "identity", "property": "colour" },
+                "text-color": "#FFFFFF"
             }
         }
     ]

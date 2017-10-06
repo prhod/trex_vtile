@@ -40,13 +40,37 @@ simplify = true
 query_limit = 1000
 [[tileset.layer.query]]
 sql = """
-    select sp.osm_id , sp.name, sp.geom, array_agg(rm.ref || ':' || rm.colour)
+    select sp.osm_id , sp.name, sp.geom, count(rm.*)
     from stop_point sp
-    inner join osm_route_members rm on sp.osm_id = rm.member_osm_id
+    left join osm_route_members rm on sp.osm_id = rm.member_osm_id
     where geom && !bbox!
     group by sp.osm_id , sp.name, sp.geom
   """
 
+
+[[tileset]]
+name = "stop_point_lines"
+extent = [-5.05458, 41.90090, 9.45420, 51.08534]
+[[tileset.layer]]
+name = "stop_point_lines"
+table_name = "stop_point_lines"
+geometry_field = "geom"
+geometry_type = "POINT"
+srid = 3857
+#fid_field = "id"
+buffer_size = 0
+simplify = true
+query_limit = 1000
+[[tileset.layer.query]]
+sql = """
+  select sp.osm_id as osm_node_id, rm.member_osm_id as osm_route_id, rm.ref, rm.colour, rm.relname as name, sp.geom,
+  ROW_NUMBER() OVER(PARTITION BY sp.osm_id) as line_index,
+  ROW_NUMBER() OVER(PARTITION BY sp.osm_id) *2 as offset_x,
+  -1.2 as offset_y
+  from stop_point sp
+  left join osm_route_members rm on sp.osm_id = rm.member_osm_id
+  where geom && !bbox!
+"""
 
 [[tileset]]
 name = "route_members"
