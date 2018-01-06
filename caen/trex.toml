@@ -30,7 +30,7 @@ name = "stop_points"
 extent = [-5.05458, 41.90090, 9.45420, 51.08534]
 [[tileset.layer]]
 name = "stop_points"
-table_name = "stop_points"
+table_name = "osm_transport_points"
 geometry_field = "geom"
 geometry_type = "POINT"
 srid = 3857
@@ -41,7 +41,7 @@ query_limit = 1000
 [[tileset.layer.query]]
 sql = """
     select sp.osm_id , sp.name, sp.geom, count(rm.*)
-    from stop_point sp
+    from osm_transport_points sp
     left join osm_route_members rm on sp.osm_id = rm.member_osm_id
     where geom && !bbox!
     group by sp.osm_id , sp.name, sp.geom
@@ -53,7 +53,7 @@ name = "stop_point_lines"
 extent = [-5.05458, 41.90090, 9.45420, 51.08534]
 [[tileset.layer]]
 name = "stop_point_lines"
-table_name = "stop_point_lines"
+table_name = "osm_transport_points"
 geometry_field = "geom"
 geometry_type = "POINT"
 srid = 3857
@@ -67,7 +67,7 @@ sql = """
   ROW_NUMBER() OVER(PARTITION BY sp.osm_id) as line_index,
   ROW_NUMBER() OVER(PARTITION BY sp.osm_id) *2 as offset_x,
   -1.2 as offset_y
-  from stop_point sp
+  from osm_transport_points sp
   left join osm_route_members rm on sp.osm_id = rm.member_osm_id
   where geom && !bbox!
 """
@@ -78,20 +78,6 @@ extent = [-5.05458, 41.90090, 9.45420, 51.08534]
 [[tileset.layer]]
 name = "route_members"
 table_name = "osm_route_members"
-geometry_field = "geom"
-geometry_type = "LINESTRING"
-srid = 3857
-#fid_field = "id"
-buffer_size = 0
-simplify = true
-query_limit = 1000
-
-[[tileset]]
-name = "routes"
-extent = [-5.05458, 41.90090, 9.45420, 51.08534]
-[[tileset.layer]]
-name = "routes"
-table_name = "osm_routes"
 geometry_field = "geometry"
 geometry_type = "LINESTRING"
 srid = 3857
@@ -99,13 +85,6 @@ srid = 3857
 buffer_size = 0
 simplify = true
 query_limit = 1000
-[[tileset.layer.query]]
-sql = """
-  SELECT id, osm_id, member, index, role, type, relname, name, ref, geometry
-  FROM osm_route_members
-  WHERE geometry && !bbox!
-  AND type = 1
-  """
 
 #[cache.file]
 #base = "/srv/mvtcache"
